@@ -285,4 +285,7 @@ Devise.setup do |config|
                 ENV["FB_APP_SECRET"],
                 callback_url: "http://localhost:3000/users/auth/facebook/callback",
                 scope: 'email,public_profile'
+
+  config.secret_key = '4fcc820f643c3cc5ef98d1dae0018f32240dda2d7a04a01cc43d69367a40cbfec5f2ebfc82c234b5922a93d87e55a89d854126bf4800482085bf36f63cf4fabe'
+  
 end
