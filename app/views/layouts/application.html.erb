@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>RobotApp</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script>
+  </head>
+
+  <body>
+    <%= link_to "Home Page", tests_path %>
+    <p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
+    <% unless current_user %> 
+    <%= link_to "Sign in", new_user_session_path %>
+    <%= link_to "Sign up", new_user_registration_path %></br>
+    <%= link_to "Sign in with Facebook", user_facebook_omniauth_authorize_path %>
+    <% else %>
+    <p>Hi, <%= current_user[:name] %>, welcome to Robot Palace</p>
+    <%= link_to "Logout", destroy_user_session_path, method: :delete %>
+    <% end %>
+    <%= yield %>
+  </body>
+</html>

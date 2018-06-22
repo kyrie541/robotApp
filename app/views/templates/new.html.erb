@@ -1,0 +1,60 @@
+<style>
+table{
+    border: 3px solid black;
+}
+td{
+  border: 3px solid white;
+  width: 200px;
+}
+td:hover {
+    border: 3px solid blue;
+}
+
+</style>
+<h1>Pick A Robot and Save</h1>
+
+<table id="tableID">
+  <tr>
+    <td><h3>Bumblebee</h3><%= image_tag 'robot1.jpg', style:"width:100%" %></td>
+    <td><h3>Red</h3><%= image_tag 'robot2.jpg', style:"width:100%" %></td>
+    <td><h3>Ultra Beast</h3><%= image_tag 'robot3.jpg', style:"width:100%" %></td>
+  </tr>
+  <tr>
+    <td><h3>Predator</h3><%= image_tag 'robot4.jpg', style:"width:100%" %></td>
+    <td><h3>Terminator</h3><%= image_tag 'robot5.jpg', style:"width:100%" %></td>
+    <td><h3>Hulk</h3><%= image_tag 'robot6.jpg', style:"width:100%" %></td>
+  </tr>
+  <tr>
+    <td><h3>Swordman</h3><%= image_tag 'robot7.jpg', style:"width:100%" %></td>
+    <td><h3>R2D2</h3><%= image_tag 'robot8.jpg', style:"width:100%" %></td>
+    <td><h3>Bobby</h3><%= image_tag 'robot9.jpg', style:"width:100%" %></td>
+  </tr>
+</table>
+
+<%= render 'form', template: @template %>
+
+<%= link_to 'Back', templates_path %>
+
+<script>
+
+var table = document.getElementById("tableID");
+if (table != null) {
+    for (var i = 0; i < table.rows.length; i++) {
+        for (var j = 0; j < table.rows[i].cells.length; j++)
+        table.rows[i].cells[j].onclick = function () {
+            $("td").css("border", "3px solid white");
+            tableText(this);
+        };
+    }
+}
+
+function tableText(tableCell) {
+    // console.log(tableCell);
+    $(tableCell).css("border", "3px solid blue");
+    var robotname= tableCell.innerHTML.split('<h3>').pop().split('</h3>').shift();
+    var imagename= tableCell.innerHTML.split('src="/assets/').pop().split('>').shift().substring(0, 6) + ".jpg";
+    $("#robotname_id").val(robotname);
+    $("#imagename_id").val(imagename);
+}
+
+</script>

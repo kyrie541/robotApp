@@ -1,0 +1,45 @@
+<style>
+table{
+    border: 3px solid black;
+}
+td{
+  border: 3px solid white;
+  width: 200px;
+}
+td:hover {
+    border: 3px solid blue;
+}
+</style>
+
+<p id="notice"><%= notice %></p>
+
+<h1>All Robots</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Robot Name</th>
+      <th>Image</th>
+      <th colspan="4"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @templates.each do |template| %>
+      <tr>
+        <td><%= template.title %></td>
+        <td><%= image_tag template.desc, style:"width:100%" %></td>
+        <td><%= link_to 'View Robot', template %></td>
+        <td><%= link_to 'Change Robot', edit_template_path(template) %></td>
+        <td><%= link_to 'Destroy', template, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Deploy Now!', new_map_path+'?param1='+template.id.to_s %><p>Coordinate: <%= template.coordinate%></p></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'Create a New Robot', new_template_path %><br>
+<%= link_to 'View All Robot Location', maps_path %>
+<p><%= link_to 'Move Your Robot', new_direction_path %></p>

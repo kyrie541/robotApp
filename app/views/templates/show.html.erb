@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Robot Name:</strong>
+  <%= @template.title %>
+</p>
+
+<p>
+  <strong>Image:</strong>
+  <%= image_tag @template.desc, style:"width:100%" %>
+</p>
+
+<p>
+  <strong>Coordinate:</strong>
+  <%= @template.coordinate %>
+</p>
+
+<%= link_to 'Edit', edit_template_path(@template) %> |
+<%= link_to 'Back', templates_path %>

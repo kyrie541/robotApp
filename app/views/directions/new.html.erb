@@ -1,0 +1,419 @@
+<style>
+table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+
+td{
+  width:100px ;
+  height: 100px;
+}
+
+#position {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    width: auto;
+    height: auto;
+    padding: 10px;
+    border: 3px solid #285179;
+
+}
+
+#position2 {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: auto;
+    height: auto;
+    padding: 10px;
+    border: 3px solid #285179;
+
+}
+
+i {
+    border: solid black;
+    border-width: 0 3px 3px 0;
+    display: inline-block;
+    padding: 3px;
+}
+
+.right {
+    transform: rotate(-45deg);
+    -webkit-transform: rotate(-45deg);
+}
+
+.left {
+    transform: rotate(135deg);
+    -webkit-transform: rotate(135deg);
+}
+
+.up {
+    transform: rotate(-135deg);
+    -webkit-transform: rotate(-135deg);
+}
+
+.down {
+    transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+}
+
+</style>
+
+<h1>Move Your Robot Here </h1>
+<h5>Select Your Robot in the map, then move it with the button at bottom-right corner!</h5>
+<h5>Then click save.</h5>
+
+<table id="tableID4">
+  <tr>
+    <td>Coordinate</td>
+    <td>a</td>
+    <td>b</td> 
+    <td>c</td>
+    <td>d</td>
+    <td>e</td> 
+    <td>f</td>
+    <td>g</td>
+    <td>h</td> 
+    <td>i</td>
+  </tr>
+
+  <tr>
+    <td>1</td>
+    <td>a1</td>
+    <td>b1</td> 
+    <td>c1</td>
+    <td>d1</td>
+    <td>e1</td> 
+    <td>f1</td>
+    <td>g1</td>
+    <td>h1</td> 
+    <td>i1</td>
+  </tr>
+
+  <tr>
+    <td>2</td>
+    <td>a2</td>
+    <td>b2</td> 
+    <td>c2</td>
+    <td>d2</td>
+    <td>e2</td> 
+    <td>f2</td>
+    <td>g2</td>
+    <td>h2</td> 
+    <td>i2</td>
+  </tr>
+
+  <tr>
+    <td>3</td>
+    <td>a3</td>
+    <td>b3</td> 
+    <td>c3</td>
+    <td>d3</td>
+    <td>e3</td> 
+    <td>f3</td>
+    <td>g3</td>
+    <td>h3</td> 
+    <td>i3</td>
+  </tr>
+
+  <tr>
+    <td>4</td>
+    <td>a4</td>
+    <td>b4</td> 
+    <td>c4</td>
+    <td>d4</td>
+    <td>e4</td> 
+    <td>f4</td>
+    <td>g4</td>
+    <td>h4</td> 
+    <td>i4</td>
+  </tr>
+
+  <tr>
+    <td>5</td>
+    <td>a5</td>
+    <td>b5</td> 
+    <td>c5</td>
+    <td>d5</td>
+    <td>e5</td> 
+    <td>f5</td>
+    <td>g5</td>
+    <td>h5</td> 
+    <td>i5</td>
+  </tr>
+
+  <tr>
+    <td>6</td>
+    <td>a6</td>
+    <td>b6</td> 
+    <td>c6</td>
+    <td>d6</td>
+    <td>e6</td> 
+    <td>f6</td>
+    <td>g6</td>
+    <td>h6</td> 
+    <td>i6</td>
+  </tr>
+
+  <tr>
+    <td>7</td>
+    <td>a7</td>
+    <td>b7</td> 
+    <td>c7</td>
+    <td>d7</td>
+    <td>e7</td> 
+    <td>f7</td>
+    <td>g7</td>
+    <td>h7</td> 
+    <td>i7</td>
+  </tr>
+
+  <tr>
+    <td>8</td>
+    <td>a8</td>
+    <td>b8</td> 
+    <td>c8</td>
+    <td>d8</td>
+    <td>e8</td> 
+    <td>f8</td>
+    <td>g8</td>
+    <td>h8</td> 
+    <td>i8</td>
+  </tr>
+
+  <tr>
+    <td>9</td>
+    <td>a9</td>
+    <td>b9</td> 
+    <td>c9</td>
+    <td>d9</td>
+    <td>e9</td> 
+    <td>f9</td>
+    <td>g9</td>
+    <td>h9</td> 
+    <td>i9</td>
+  </tr>
+
+</table>
+
+<p>Original Location: </p>
+<input type="text" id="oriCoordinate" readonly>
+<p>Updated Location: </p>
+<input type="text" id="coordinateValue" readonly>
+<p id="paramControl"><%= link_to 'Save', directions_path(:param3=>"haha",:param4=>"hehe") %></p>
+
+
+
+<div id="position">
+    <button type="button" onclick="moveNorth()">Move North <i class="arrow up"></i></button>
+    <button type="button" onclick="moveSouth()">Move South <i class="arrow down"></i></button>
+    <button type="button" onclick="moveEast()">Move East <i class="arrow left"></i></button>
+    <button type="button" onclick="moveWest()">Move West <i class="arrow right"></i></button>
+</div>
+
+<div id="position2">
+    <button type="button" onclick="deselect()">Deselect</button>
+</div>
+
+<p><%= link_to 'View all of Your Robots', templates_path %></p>
+
+<script>
+
+var tdList = document.getElementsByTagName("td");
+var selectedRobot = "";
+var movingMode = false;
+
+function refresh(){
+    for (var i=0; i<tdList.length; i++){
+        <% @templates.each do |template| %>
+            if(tdList[i].innerHTML== "<%=template.coordinate%>"){
+                tdList[i].innerHTML="<p>Location: <%= template.coordinate%></p><p>Owner: <%= template.user.name%> </p><p><%=template.title%></p>";
+            }
+        <% end %>
+        if(tdList[i].innerHTML.split('<p>Owner: ').pop().split(' </p>').shift()=="<%= current_user[:name] %>"){
+            tdList[i].style.backgroundColor = "#d8eac5";
+        }
+
+    }
+    selectedRobot="";
+    $("#oriCoordinate").val(" ");
+    $("#coordinateValue").val(" ");
+}
+
+refresh();
+
+var table = document.getElementById("tableID4");
+if (table != null) {
+    for (var i = 0; i < table.rows.length; i++) {
+        for (var j = 0; j < table.rows[i].cells.length; j++)
+        table.rows[i].cells[j].onclick = function () {
+            if(movingMode !=true){
+                refresh();
+                tableText(this);
+            }else{
+                alert("You only can move one Robot once time! Click Deselect Button on top right corner if u want to move other Robot!");
+            };
+        };
+    }
+}
+
+function tableText(tableCell) {
+    if (<%=  @template.present? %> && tableCell.innerHTML.split('<p>Owner: ').pop().split(' </p>').shift()=="<%= current_user[:name] %>"){
+        //change background color of cell
+        $(tableCell).css("background-color", "#b4c27d");
+
+        //show original coordinate and updated code in text field
+        $("#oriCoordinate").val(tableCell.innerHTML.split('<p>Location: ').pop().split('</p>').shift());
+
+        //params changing code, for first params
+        var textOfFirstParam = $('#paramControl').html().split('<a href="/directions?param3=').pop().split('&amp;').shift();
+        var paramControl = document.getElementById("paramControl").innerHTML;
+        var change = paramControl.replace(textOfFirstParam, $("#oriCoordinate").val());
+        document.getElementById("paramControl").innerHTML = change;
+
+        selectedRobot = tableCell.innerHTML;
+    }
+
+
+}
+
+function updateNewCoordinate(){
+    $("#coordinateValue").val(selectedRobot.split('<p>Location: ').pop().split('</p><p>Owner:').shift());
+
+    //for update second params
+    var textOfSecondParam = $('#paramControl').html().split('param4=').pop().split('">Save').shift();
+    var paramControl2 = document.getElementById("paramControl").innerHTML;
+    var change2 = paramControl2.replace(textOfSecondParam, $("#coordinateValue").val());
+    document.getElementById("paramControl").innerHTML = change2;
+
+}
+
+function deselect(){
+    for (var i=0; i<tdList.length; i++){
+        if(tdList[i].innerHTML==selectedRobot){
+            var backtoOriCoordinate = selectedRobot.split('<p>Location: ').pop().split('</p><p>Owner:').shift();
+            tdList[i].innerHTML=backtoOriCoordinate;
+            tdList[i].style.backgroundColor = "white";
+        }
+    }
+    refresh();
+    movingMode = false;
+}
+
+
+
+function moveWest(){
+    // console.log(selectedRobot);
+    movingMode = true;
+    for (var i=0; i<tdList.length; i++){
+        if(tdList[i].innerHTML==selectedRobot){
+            if(tdList[i+1].innerHTML.length==1){
+                alert("You can't move West anymore!");
+            }else if(tdList[i+1].innerHTML.length>5){
+                alert("This zone already occupied by other Robot!");
+            }
+            else{
+                var newCoordinate = tdList[i+1].innerHTML;
+                var oldCoordinate = selectedRobot.split('<p>Location: ').pop().split('</p><p>Owner:').shift();
+                var change3 = selectedRobot.replace(oldCoordinate, newCoordinate);
+
+                tdList[i+1].innerHTML=change3;
+                tdList[i+1].style.backgroundColor = "#b4c27d";
+                selectedRobot = change3;
+
+                var change4 = tdList[i].innerHTML.split('<p>Location: ').pop().split('</p><p>Owner:').shift();
+                tdList[i].style.backgroundColor = "white";
+                tdList[i].innerHTML = change4;
+                break;
+            }
+        }
+    }
+    updateNewCoordinate();
+}
+
+function moveEast(){
+    // console.log(selectedRobot);
+    movingMode = true;
+    for (var i=0; i<tdList.length; i++){
+        if(tdList[i].innerHTML==selectedRobot){
+            if(tdList[i-1].innerHTML.length==1){
+                alert("You can't move East anymore!");
+            }else if(tdList[i-1].innerHTML.length>5){
+                alert("This zone already occupied by other Robot!");
+            }else{
+                var newCoordinate = tdList[i-1].innerHTML;
+                var oldCoordinate = selectedRobot.split('<p>Location: ').pop().split('</p><p>Owner:').shift();
+                var change3 = selectedRobot.replace(oldCoordinate, newCoordinate);
+
+                tdList[i-1].innerHTML=change3;
+                tdList[i-1].style.backgroundColor = "#b4c27d";
+                selectedRobot = change3;
+
+                var change4 = tdList[i].innerHTML.split('<p>Location: ').pop().split('</p><p>Owner:').shift();
+                tdList[i].style.backgroundColor = "white";
+                tdList[i].innerHTML = change4;
+                break;
+            }
+        }
+    }
+    updateNewCoordinate();
+}
+
+function moveNorth(){
+        // console.log(selectedRobot);
+    movingMode = true;
+    for (var i=0; i<tdList.length; i++){
+        if(tdList[i].innerHTML==selectedRobot){
+            if(tdList[i-10].innerHTML.length==1){
+                alert("You can't move North anymore!");
+            }else if(tdList[i-10].innerHTML.length>5){
+                alert("This zone already occupied by other Robot!");
+            }else{
+                var newCoordinate = tdList[i-10].innerHTML;
+                var oldCoordinate = selectedRobot.split('<p>Location: ').pop().split('</p><p>Owner:').shift();
+                var change3 = selectedRobot.replace(oldCoordinate, newCoordinate);
+
+                tdList[i-10].innerHTML=change3;
+                tdList[i-10].style.backgroundColor = "#b4c27d";
+                selectedRobot = change3;
+
+                var change4 = tdList[i].innerHTML.split('<p>Location: ').pop().split('</p><p>Owner:').shift();
+                tdList[i].style.backgroundColor = "white";
+                tdList[i].innerHTML = change4;
+                break;
+            }
+        }
+    }
+    updateNewCoordinate();
+
+}
+
+function moveSouth(){
+        // console.log(selectedRobot);
+    movingMode = true;
+    for (var i=0; i<tdList.length; i++){
+        if(tdList[i].innerHTML==selectedRobot){
+            if(tdList[i+10].innerHTML.length>5){
+                alert("This zone already occupied by other Robot!");
+            }else{
+                var newCoordinate = tdList[i+10].innerHTML;
+                var oldCoordinate = selectedRobot.split('<p>Location: ').pop().split('</p><p>Owner:').shift();
+                var change3 = selectedRobot.replace(oldCoordinate, newCoordinate);
+
+                tdList[i+10].innerHTML=change3;
+                tdList[i+10].style.backgroundColor = "#b4c27d";
+                selectedRobot = change3;
+
+                var change4 = tdList[i].innerHTML.split('<p>Location: ').pop().split('</p><p>Owner:').shift();
+                tdList[i].style.backgroundColor = "white";
+                tdList[i].innerHTML = change4;
+                break;
+            }
+        }
+    }   
+    updateNewCoordinate();
+
+}
+
+</script>

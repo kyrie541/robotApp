@@ -1,0 +1,252 @@
+<style>
+table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+
+td{
+  width:100px ;
+  height: 100px;
+}
+
+
+</style>
+
+<h1>Deploy Your Robot Here</h1>
+
+<table id="tableID2">
+  <tr>
+    <td>Coordinate</td>
+    <td>a</td>
+    <td>b</td> 
+    <td>c</td>
+    <td>d</td>
+    <td>e</td> 
+    <td>f</td>
+    <td>g</td>
+    <td>h</td> 
+    <td>i</td>
+  </tr>
+  <tr>
+    <td>1</td>
+    <td>a1</td>
+    <td>b1</td> 
+    <td>c1</td>
+    <td>d1</td>
+    <td>e1</td> 
+    <td>f1</td>
+    <td>g1</td>
+    <td>h1</td> 
+    <td>i1</td>
+  </tr>
+
+  <tr>
+    <td>2</td>
+    <td>a2</td>
+    <td>b2</td> 
+    <td>c2</td>
+    <td>d2</td>
+    <td>e2</td> 
+    <td>f2</td>
+    <td>g2</td>
+    <td>h2</td> 
+    <td>i2</td>
+  </tr>
+
+  <tr>
+    <td>3</td>
+    <td>a3</td>
+    <td>b3</td> 
+    <td>c3</td>
+    <td>d3</td>
+    <td>e3</td> 
+    <td>f3</td>
+    <td>g3</td>
+    <td>h3</td> 
+    <td>i3</td>
+  </tr>
+
+  <tr>
+    <td>4</td>
+    <td>a4</td>
+    <td>b4</td> 
+    <td>c4</td>
+    <td>d4</td>
+    <td>e4</td> 
+    <td>f4</td>
+    <td>g4</td>
+    <td>h4</td> 
+    <td>i4</td>
+  </tr>
+
+  <tr>
+    <td>5</td>
+    <td>a5</td>
+    <td>b5</td> 
+    <td>c5</td>
+    <td>d5</td>
+    <td>e5</td> 
+    <td>f5</td>
+    <td>g5</td>
+    <td>h5</td> 
+    <td>i5</td>
+  </tr>
+
+  <tr>
+    <td>6</td>
+    <td>a6</td>
+    <td>b6</td> 
+    <td>c6</td>
+    <td>d6</td>
+    <td>e6</td> 
+    <td>f6</td>
+    <td>g6</td>
+    <td>h6</td> 
+    <td>i6</td>
+  </tr>
+
+  <tr>
+    <td>7</td>
+    <td>a7</td>
+    <td>b7</td> 
+    <td>c7</td>
+    <td>d7</td>
+    <td>e7</td> 
+    <td>f7</td>
+    <td>g7</td>
+    <td>h7</td> 
+    <td>i7</td>
+  </tr>
+
+  <tr>
+    <td>8</td>
+    <td>a8</td>
+    <td>b8</td> 
+    <td>c8</td>
+    <td>d8</td>
+    <td>e8</td> 
+    <td>f8</td>
+    <td>g8</td>
+    <td>h8</td> 
+    <td>i8</td>
+  </tr>
+
+  <tr>
+    <td>9</td>
+    <td>a9</td>
+    <td>b9</td> 
+    <td>c9</td>
+    <td>d9</td>
+    <td>e9</td> 
+    <td>f9</td>
+    <td>g9</td>
+    <td>h9</td> 
+    <td>i9</td>
+  </tr>
+</table>
+
+<%= form_for @template do |f| %>
+  <% if @template.errors.any? %>
+    <div id="error_explanation">
+      <h2>
+        <%= pluralize(@template.errors.count, "error") %>
+        prohibited this article from being saved: 
+      </h2> 
+      <p>
+        <ul>
+          <% @template.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+          <% end %>
+        </ul>
+      </p>
+    </div>
+  <% end %><!-- end for checking errors -->
+
+  <div class="field">
+    <p>Location: </p>
+    <%= f.text_field :coordinate, readonly: true, :id => 'coordinateValue'  %>
+  </div>
+
+  <%= f.submit 'Save' %>
+<% end %>
+
+<p><%= link_to 'View all of Your Robots', templates_path %></p>
+
+<script>
+var table = document.getElementById("tableID2");
+if (table != null) {
+    for (var i = 0; i < table.rows.length; i++) {
+        for (var j = 0; j < table.rows[i].cells.length; j++)
+        table.rows[i].cells[j].onclick = function () {
+            $("td").css("background-color", "white");
+            tableText(this);
+        };
+    }
+}
+
+function tableText(tableCell) {
+    if (<%=  @template.present? %>){
+        // console.log(tableCell);
+        // console.log(tableCell.innerHTML);
+        $(tableCell).css("background-color", "yellow");
+        $("#coordinateValue").val(tableCell.innerHTML);
+        // console.log("<%= @template.present? %>");
+    }
+
+}
+
+//checking code
+var contains = function(needle) {
+    // Per spec, the way to identify NaN is that it is not equal to itself
+    var findNaN = needle !== needle;
+    var indexOf;
+
+    if(!findNaN && typeof Array.prototype.indexOf === 'function') {
+        indexOf = Array.prototype.indexOf;
+    } else {
+        indexOf = function(needle) {
+            var i = -1, index = -1;
+
+            for(i = 0; i < this.length; i++) {
+                var item = this[i];
+
+                if((findNaN && item !== item) || item === needle) {
+                    index = i;
+                    break;
+                }
+            }
+
+            return index;
+        };
+    }
+
+    return indexOf.call(this, needle) > -1;
+};
+
+//how to use checking code
+// var myArray = [0,1,2],
+// needle = 1,
+// index = contains.call(myArray, needle); // true
+
+var coordinateList = [];
+var tdList = document.getElementsByTagName("td");
+
+<% @templates.each do |template| %>
+    if("<%= template.coordinate%>"!=""){
+        coordinateList.push("<%= template.coordinate%>");
+    }
+<% end %>
+
+console.log(coordinateList);
+
+
+for (var i=0; i<tdList.length; i++){
+    if(contains.call(coordinateList, tdList[i].innerHTML)){
+        tdList[i].innerHTML="Sorry, this spot already occupy by another Robot!You can't click on me =P";
+        tdList[i].style.pointerEvents = 'none';
+    }
+}
+
+
+
+</script>

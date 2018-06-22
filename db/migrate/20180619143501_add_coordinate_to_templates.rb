@@ -1,0 +1,5 @@
+class AddCoordinateToTemplates < ActiveRecord::Migration[5.2]
+  def change
+    add_column :templates, :coordinate, :string
+  end
+end

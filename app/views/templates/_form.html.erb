@@ -1,0 +1,27 @@
+<%= form_with(model: template, local: true) do |form| %>
+  <% if template.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(template.errors.count, "error") %> prohibited this Robot from being saved:</h2>
+
+      <ul>
+      <% template.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <p>Robot Name</p>
+    <%= form.text_field :title, readonly: true, :id => 'robotname_id'  %>
+  </div>
+
+  <div class="field">
+    <p>Image Name</p>
+    <%= form.text_field :desc, readonly: true, :id => 'imagename_id' %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit 'Save' %>
+  </div>
+<% end %>
