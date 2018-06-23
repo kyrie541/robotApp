@@ -283,7 +283,10 @@ Devise.setup do |config|
   config.omniauth :facebook,
                 ENV["FB_APP_ID"],
                 ENV["FB_APP_SECRET"],
-                callback_url: "http://localhost:3000/users/auth/facebook/callback",
+                callback_url: "http://robotapp157.herokuapp.com/users/auth/facebook/callback",
                 scope: 'email,public_profile'
   config.secret_key = '1b85f6550d66dd35027bfb1d89f40ec229492037070bbf7a2051dbd8753b273d71411890b5f7ad9685cbe1ba6ce5bee79a8acf371cd37b847d02e4200549a7c4'
 end
+
+# https://robotapp157.herokuapp.com/users/auth/facebook
+# http://localhost:3000/users/auth/facebook/callback
